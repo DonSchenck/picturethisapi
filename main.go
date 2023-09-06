@@ -31,7 +31,7 @@ func main() {
 
 	router.Use(CORSMiddleware())
 	router.POST("/overlayImage", overlayImage)
-	router.Run("localhost:8080")
+	router.Run("0.0.0.0:8080")
 
 }
 
