@@ -7,6 +7,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/gin-gonic/gin"
 )
@@ -63,7 +64,9 @@ func postToOverlayImage(photoToBeModified photo) photo {
 	}
 
 	fmt.Println("Calling API...")
-	resp, err := http.Post("https://imageoverlay-serverless-rhn-engineering-dsch-dev.apps.sandbox-m3.1530.p1.openshiftapps.com/overlayImage", "application/json",
+	// Get URL from environment variable
+	overlayURL := os.Getenv("OVERLAY_IMAGE_URL")
+	resp, err := http.Post(overlayURL, "application/json",
 		bytes.NewBuffer(json_data))
 
 	if err != nil {
